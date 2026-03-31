@@ -1,83 +1,96 @@
-# 🧠 Նախագիծ՝ Neural Network Visualizer — Guided Track
-> **Տևողություն՝** 2 շաբաթ  
-> **Բարդություն՝** ⭐⭐ Guided  
-> **Կարող եք օգտագործել՝** Պաշտոնական documentation, Stack Overflow, AI գործիքներ՝ հասկացությունները հասկանալու համար — բայց ամբողջ կոդը պետք է գրված և հասկացված լինի ձեր կողմից։ Եթե ձեզ հարցնեն, պետք է կարողանաք բացատրել ձեր կոդի ցանկացած տող։
----
-## 📖 Մինչ սկսելը — Հիմնական գաղափարներ
-Կարդացեք սրանք ուշադիր։ Դրանք բացատրում են, թե *ինչու* ենք անում ինչ‑որ բան, ոչ միայն *ինչպես*։
-### Ի՞նչ է Virtual Environment-ը
-Պատկերացրեք, որ ձեր համակարգիչը խոհանոց է, որը կիսում են շատ խոհարարներ (նախագծեր)։ Եթե մի խոհարարին պետք է salt version 1.0, իսկ մյուսին՝ salt version 2.0, դրանք կբախվեն։ **Virtual environment**-ը յուրաքանչյուր նախագծի տալիս է իր առանձին, մասնավոր խոհանոցը։
+# 🧠 Նախագիծ: Neural Network Visualizer — Ուղղորդված ուղի
 
-**Կանոն՝** Նախագծի վրա աշխատելուց առաջ միշտ ակտիվացրեք ձեր virtual environment-ը։
-### Ի՞նչ է `requirements.txt`-ը
-Պատկերացրեք, որ դուք թխել եք cake, և ձեր ընկերը ցանկանում է նույնը պատրաստել։ Դուք նրան կտայիք recipe՝ ճշգրիտ ingredients-ներով։ `requirements.txt`-ը հենց այդ recipe-ն է Python package-ների համար․
-``` 
+**Ժամանակացույց:** 2 շաբաթ  
+**Բարդություն:** ⭐⭐ Ուղղորդված  
+**Կարող եք օգտագործել:** Պաշտոնական փաստաթղթեր (Official documentation), Stack Overflow, AI գործիքներ հասկացությունները հասկանալու համար — բայց ամբողջ կոդը պետք է գրվի և հասկացվի ձեր կողմից: Հարցման դեպքում դուք պետք է կարողանաք բացատրել ձեր կոդի ցանկացած տող:
+
+---
+
+## 📖 Նախքան սկսելը — Հիմնական հասկացություններ
+Կարդացեք սրանցից յուրաքանչյուրը ուշադիր: Դրանք բացատրում են, թե **ինչու** ենք մենք անում որոշակի բաներ, այլ ոչ թե միայն **ինչպես**:
+
+### Ի՞նչ է Virtual Environment-ը:
+Պատկերացրեք ձեր համակարգիչը որպես խոհանոց, որը կիսում են շատ շեֆ-խոհարարներ (նախագծեր): Եթե մի խոհարարին պետք է աղի 1.0 տարբերակը, իսկ մյուսին՝ աղի 2.0 տարբերակը, նրանք կբախվեն: **Virtual environment**-ը յուրաքանչյուր նախագծին տալիս է իր սեփական մասնավոր խոհանոցը:  
+**Կանոն:** Միշտ ակտիվացրեք ձեր virtual environment-ը նախագծի վրա աշխատելուց առաջ:
+
+### Ի՞նչ է requirements.txt-ն:
+Պատկերացրեք, թե դուք տորթ եք թխել, և ձեր ընկերը ցանկանում է պատրաստել նույնը: Դուք նրան կտաք բաղադրատոմս՝ ճշգրիտ բաղադրիչներով: **requirements.txt**-ն հենց այդ բաղադրատոմսն է Python փաթեթների (packages) համար.
+```text
 plotly>=5.18
 numpy>=1.24
 ```
-Այժմ ցանկացած մարդ կարող է գրել `pip install -r requirements.txt` և ստանալ ճիշտ նույն package-ները, որոնք դուք եք օգտագործել։
-### Ի՞նչ է `.gitignore`-ը
-Որոշ ֆայլեր չափազանց **մեծ** կամ չափազանց **անձնական** են GitHub-ում դնելու համար։ `.gitignore` ֆայլը այն ֆայլերի ցանկն է, որոնց Git-ը պետք է ձևացնի, թե գոյություն չունեն։ Դուք երբեք չեք ցանկանա upload անել՝
-- `venv/` — ձեր virtual environment-ը (կարող է լինել 200+ MB)
-- `__pycache__/` — ինքնաբար ստեղծվող անպետք ֆայլեր
-- `outputs/` — ֆայլեր, որոնք ցանկացած մարդ կարող է նորից ստեղծել՝ պարզապես գործարկելով ձեր կոդը
-### Ի՞նչ է Neural Network-ը (Պարզեցված)
-Պատկերացրեք, որ ունեք կետեր էջի վրա — մի մասը կարմիր է, մի մասը կապույտ, խառնված իրար։ Դուք ուզում եք գծել մի ալիքաձև գիծ, որը դրանք կբաժանի։ Neural network-ը **սովորում է**, թե որտեղ պետք է գծել այդ գիծը՝
-1. Պատահական guess անելով
-2. Ստուգելով, թե որքան սխալ էր guess-ը (**loss**)
-3. Մի փոքր շտկելով guess-ը
-4. Կրկնելով սա հարյուրավոր անգամներ (**epochs**)
+Այժմ ցանկացած ոք կարող է մուտքագրել `pip install -r requirements.txt` և ստանալ ճիշտ նույն փաթեթները, որոնք դուք եք օգտագործել:
 
-Guess-check-adjust-ի յուրաքանչյուր փուլ մեկ training step է։ Բավականաչափ քայլերից հետո գիծը գեղեցիկ տեղավորվում է դասերի միջև։
-### Ի՞նչ է Plotly-ը
-Plotly-ն ստեղծում է **interactive charts** — կարող եք hover անել՝ արժեքները տեսնելու համար, zoom անել, պտտել 3D plot-ները և export անել ամեն ինչ որպես HTML ֆայլ, որը բացվում է ցանկացած browser-ում։ Սա է, ինչ մենք կօգտագործենք մեր neural network-ը visualize անելու համար։
-### Ի՞նչ է `go`-ն ընդդեմ `px`-ի
-Plotly-ն ունի երկու հիմնական interface՝
-- **`plotly.express` (px)** — արագ և հեշտ, հիանալի է պարզ plot-ների համար։ Ինչպես Instagram filters — ընտրում եք մեկը և անցնում առաջ։
-- **`plotly.graph_objects` (go)** — լիարժեք control, ավելի շատ կոդ, բայց կարող եք customize անել ամեն ինչ։ Ինչպես Photoshop։
+### Ի՞նչ է .gitignore-ը:
+Որոշ ֆայլեր **շատ մեծ են** կամ **շատ անձնական** GitHub-ում տեղադրելու համար: **.gitignore** ֆայլը այն ֆայլերի ցանկն է, որոնք Git-ը պետք է ձևացնի, թե գոյություն չունեն: Դուք երբեք չպետք է վերբեռնեք (upload).
+* `venv/` — ձեր virtual environment-ը (կարող է լինել 200+ MB)
+* `__pycache__/` — ավտոմատ գեներացվող «աղբ» ֆայլեր
+* `outputs/` — ֆայլեր, որոնք ցանկացած ոք կարող է վերագեներացնել՝ աշխատեցնելով ձեր կոդը
 
-Այս նախագծում կօգտագործենք **երկուսն էլ**։
+### Ի՞նչ է Neural Network-ը: (Պարզեցված)
+Պատկերացրեք, դուք ունեք կետեր էջի վրա՝ որոշները կարմիր, որոշները կապույտ, խառնված իրար: Դուք ցանկանում եք գծել մի ալիքաձև գիծ, որը բաժանում է դրանց: **Neural network**-ը սովորում է, թե որտեղ գծել այդ գիծը հետևյալ կերպ.
+1. Կռահել պատահականորեն
+2. Ստուգել, թե որքան սխալ էր կռահումը (**loss**)
+3. Մի փոքր ուղղել կռահումը
+4. Կրկնել հարյուրավոր անգամներ (**epochs**)
+Կռահել-ստուգել-ուղղել յուրաքանչյուր փուլը մեկ մարզման քայլ է: Բավարար քայլերից հետո գիծը գեղեցիկ տեղավորվում է դասերի միջև:
+
+### Ի՞նչ է Plotly-ն:
+Plotly-ն ստեղծում է **ինտերակտիվ գրաֆիկներ** — դուք կարող եք պահել մկնիկը արժեքները տեսնելու համար, մեծացնել (zoom), պտտել 3D գրաֆիկները և արտահանել ամեն ինչ որպես HTML ֆայլ, որը բացվում է ցանկացած բրաուզերում: Սա այն է, ինչ մենք կօգտագործենք մեր նեյրոնային ցանցը վիզուալիզացնելու համար:
+
+### Ի՞նչ է go-ն ընդդեմ px-ի:
+Plotly-ն ունի երկու հիմնական ինտերֆեյս.
+* **plotly.express (px)** — արագ և հեշտ, հիանալի է պարզ գրաֆիկների համար: Ինչպես Instagram-ի ֆիլտրերը՝ ընտրեք մեկը և վերջ:
+* **plotly.graph_objects (go)** — լիակատար վերահսկողություն, ավելի շատ կոդ, բայց դուք կարող եք հարմարեցնել ամեն ինչ: Ինչպես Photoshop-ը: Մենք կօգտագործենք **երկուսն էլ** այս նախագծում:
+
 ---
-## 🖥️ OS-Specific Commands Reference
-Այս նախագծի ընթացքում որոշ terminal command-ներ տարբերվում են ըստ operating system-ի։ Այս բաժինը ձեր **cheat sheet**-ն է — վերադարձեք այստեղ, երբ command-ի կարիք ունենաք։
+
+## 🖥️ ՕՀ-ին հատուկ հրամանների տեղեկատու
+Այս նախագծի ընթացքում տերմինալի որոշ հրամաններ տարբերվում են ըստ օպերացիոն համակարգի (OS): Այս բաժինը ձեր «հուշաթերթիկն» է (cheat sheet):
+
 ### 🍎 macOS
 ```bash
-# Python — macOS-ում հաճախ պետք է օգտագործել "python3"՝ "python"-ի փոխարեն
-python3 --version                    # Ստուգել Python version-ը
+# Python — macOS-ը հաճախ պահանջում է "python3"՝ "python"-ի փոխարեն
+python3 --version                    # Ստուգել Python-ի տարբերակը
 python3 -m venv venv                 # Ստեղծել virtual environment
-source venv/bin/activate             # Ակտիվացնել virtual environment-ը
-deactivate                           # Ապաակտիվացնել virtual environment-ը
-pip3 install -r requirements.txt     # Տեղադրել package-ները
-python3 data/generate.py             # Գործարկել script-ը
-python3 main.py                      # Գործարկել հիմնական pipeline-ը
-# Folder creation
-mkdir nn-visualizer-guided           # Ստեղծել folder
-cd nn-visualizer-guided              # Մտնել folder
-mkdir -p data model viz outputs      # Ստեղծել մի քանի folder (-p = error չի տա, եթե արդեն գոյություն ունի)
+source venv/bin/activate             # Ակտիվացնել virtual environment
+deactivate                           # Ապաակտիվացնել virtual environment
+pip3 install -r requirements.txt     # Տեղադրել փաթեթները
+python3 data/generate.py             # Աշխատեցնել սկրիպտը
+python3 main.py                      # Աշխատեցնել հիմնական pipeline-ը
+
+# Թղթապանակի ստեղծում
+mkdir nn-visualizer-guided           # Ստեղծել թղթապանակ
+cd nn-visualizer-guided              # Մտնել թղթապանակ
+mkdir -p data model viz outputs      # Ստեղծել մի քանի թղթապանակներ
+
 # Git
-git init                             # Սկսել repo
-git add requirements.txt .gitignore  # Stage անել ֆայլերը
-git commit -m "your message"         # Commit անել հաղորդագրությամբ
-git log --oneline                    # Տեսնել commit history-ն (կարճ ձևով)
-git remote add origin <URL>          # Կապել GitHub-ին
-git push -u origin main              # Ուղարկել GitHub (առաջին անգամ)
-git push                             # Ուղարկել GitHub (հաջորդ անգամ)
+git init                             # Նախաձեռնել (initialize) ռեպոզիտորիան
+git add requirements.txt .gitignore  # Ավելացնել ֆայլերը staging area
+git commit -m "your message"         # Կատարել քոմիթ (commit) հաղորդագրությամբ
+git log --oneline                    # Դիտել քոմիթների պատմությունը
+git remote add origin <URL>          # Միանալ GitHub-ին
+git push -u origin main              # Վերբեռնել GitHub (առաջին անգամ)
+git push                             # Վերբեռնել GitHub (հետագայում)
 ```
+
 ### 🪟 Windows (Command Prompt)
 ```cmd
-# Python — Windows-ում սովորաբար օգտագործվում է "python" (ոչ թե python3)
-python --version                     # Ստուգել Python version-ը
+# Python — Windows-ը սովորաբար օգտագործում է "python" (ոչ թե python3)
+python --version                     # Ստուգել Python-ի տարբերակը
 python -m venv venv                  # Ստեղծել virtual environment
-venv\Scripts\activate                # Ակտիվացնել virtual environment-ը
-deactivate                           # Ապաակտիվացնել virtual environment-ը
-pip install -r requirements.txt      # Տեղադրել package-ները
-python data\generate.py              # Գործարկել script-ը (նշում՝ backslashes)
-python main.py                       # Գործարկել հիմնական pipeline-ը
-# Folder creation
-mkdir nn-visualizer-guided           # Ստեղծել folder
-cd nn-visualizer-guided              # Մտնել folder
-mkdir data model viz outputs         # Ստեղծել մի քանի folder
-# Git (բոլոր OS-ներում նույնն է)
+venv\Scripts\activate                # Ակտիվացնել virtual environment
+deactivate                           # Ապաակտիվացնել virtual environment
+pip install -r requirements.txt      # Տեղադրել փաթեթները
+python data\generate.py              # Աշխատեցնել սկրիպտը
+python main.py                       # Աշխատեցնել հիմնական pipeline-ը
+
+# Թղթապանակի ստեղծում
+mkdir nn-visualizer-guided           # Ստեղծել թղթապանակ
+cd nn-visualizer-guided              # Մտնել թղթապանակ
+mkdir data model viz outputs         # Ստեղծել թղթապանակներ
+
+# Git (նույնն է բոլոր ՕՀ-ների համար)
 git init
 git add requirements.txt .gitignore
 git commit -m "your message"
@@ -86,21 +99,24 @@ git remote add origin <URL>
 git push -u origin main
 git push
 ```
+
 ### 🐧 Linux (Bash)
 ```bash
-# Python — Linux distro-ների մեծ մասում օգտագործվում է "python3"
-python3 --version                    # Ստուգել Python version-ը
+# Python — Linux դիստրիբյուտիվների մեծ մասն օգտագործում է "python3"
+python3 --version                    # Ստուգել Python-ի տարբերակը
 python3 -m venv venv                 # Ստեղծել virtual environment
-source venv/bin/activate             # Ակտիվացնել virtual environment-ը
-deactivate                           # Ապաակտիվացնել virtual environment-ը
-pip install -r requirements.txt      # Տեղադրել package-ները
-python3 data/generate.py             # Գործարկել script-ը
-python3 main.py                      # Գործարկել հիմնական pipeline-ը
-# Folder creation
-mkdir nn-visualizer-guided           # Ստեղծել folder
-cd nn-visualizer-guided              # Մտնել folder
-mkdir -p data model viz outputs      # Ստեղծել մի քանի folder
-# Git (բոլոր OS-ներում նույնն է)
+source venv/bin/activate             # Ակտիվացնել virtual environment
+deactivate                           # Ապաակտիվացնել virtual environment
+pip install -r requirements.txt      # Տեղադրել փաթեթները
+python3 data/generate.py             # Աշխատեցնել սկրիպտը
+python3 main.py                      # Աշխատեցնել հիմնական pipeline-ը
+
+# Թղթապանակի ստեղծում
+mkdir nn-visualizer-guided           # Ստեղծել թղթապանակ
+cd nn-visualizer-guided              # Մտնել թղթապանակ
+mkdir -p data model viz outputs      # Ստեղծել թղթապանակներ
+
+# Git (նույնն է բոլոր ՕՀ-ների համար)
 git init
 git add requirements.txt .gitignore
 git commit -m "your message"
@@ -109,48 +125,57 @@ git remote add origin <URL>
 git push -u origin main
 git push
 ```
-> **💡 Նշում `python` vs `python3` մասին՝** macOS-ում և Linux-ում `python`-ը երբեմն հղվում է Python 2-ին (որը հնացած է)։ Ապահով լինելու համար միշտ օգտագործեք `python3`։ Windows-ում installer-ը սովորաբար `python`-ը կապում է Python 3-ի հետ։ Ստուգելու համար գործարկեք `python --version` — եթե ցույց է տալիս 2.x, անցեք `python3`-ի։
-> **💡 Նշում path separator-ների մասին՝** macOS-ը և Linux-ը օգտագործում են forward slashes (`data/generate.py`)։ Windows-ը օգտագործում է backslashes (`data\generate.py`)։ Իսկ Python code-ի ներսում միշտ օգտագործեք forward slashes կամ `os.path.join()` — Python-ը ինքն է կատարում փոխակերպումը ձեզ համար։
+
+💡 **Նշում python-ի և python3-ի վերաբերյալ:** macOS-ում և Linux-ում `python`-ը երբեմն մատնանշում է Python 2-ը (որը հնացած է): Միշտ օգտագործեք `python3` ապահով լինելու համար: Windows-ում տեղադրող ծրագիրը սովորաբար կարգավորում է `python`-ը որպես Python 3: Ստուգելու համար աշխատեցրեք `python --version` — եթե այն ասում է 2.x, անցեք `python3`-ի:  
+💡 **Նշում path separators-ի վերաբերյալ:** macOS-ը և Linux-ը օգտագործում են forward slashes (`data/generate.py`): Windows-ը օգտագործում է backslashes (`data\generate.py`): Python կոդի մեջ միշտ օգտագործեք forward slashes կամ `os.path.join()` — Python-ը կկատարի փոխակերպումը ձեր փոխարեն:
+
 ---
-## 🗂 Պահանջվող Repository Structure
-Ձեր GitHub repo-ն պետք է այսպես տեսք ունենա՝
-```
+
+## 🗂 Պահանջվող ռեպոզիտորիայի կառուցվածքը
+Ձեր GitHub ռեպոզիտորիան պետք է ունենա հետևյալ տեսքը.
+
+```text
 nn-visualizer-guided/
 │
-├── README.md                  # ՍԱ ԴՈՒՔ եք գրում — նկարագրեք ձեր նախագիծը
-├── requirements.txt           # Package-ների ցանկ (տրամադրված է ստորև)
-├── .gitignore                 # Չներառվող ֆայլեր (տրամադրված է ստորև)
+├── README.md                  # ԴՈՒՔ եք գրում սա — նկարագրեք ձեր նախագիծը
+├── requirements.txt           # Փաթեթների ցանկ (տրված է ստորև)
+├── .gitignore                 # Բացառվող ֆայլեր (տրված է ստորև)
 │
 ├── data/
-│   └── generate.py            # Task 1
+│   └── generate.py            # Առաջադրանք 1
 │
 ├── model/
-│   └── train.py               # Task 2
+│   └── train.py               # Առաջադրանք 2
 │
 ├── viz/
-│   ├── scatter2d.py           # Task 3
-│   ├── training_curves.py     # Task 4
-│   ├── decision_boundary.py   # Task 5
-│   └── scatter3d.py           # Task 6
+│   ├── scatter2d.py           # Առաջադրանք 3
+│   ├── training_curves.py     # Առաջադրանք 4
+│   ├── decision_boundary.py   # Առաջադրանք 5
+│   └── scatter3d.py           # Առաջադրանք 6
 │
-├── outputs/                   # Ձեր export արված .html plot-ները այստեղ են գնում
+├── outputs/                   # Ձեր արտահանված .html գրաֆիկները այստեղ են
 │
-└── main.py                    # Գործարկում է ամեն ինչ
+└── main.py                    # Աշխատեցնում է ամեն ինչ
 ```
-> **Ինչո՞ւ առանձին ֆայլեր։** Յուրաքանչյուր ֆայլ անում է ՄԵԿ բան։ Սա հեշտացնում է կոդը գտնելը, bug-երը շտկելը և մեկ մասի վրա աշխատելը՝ առանց մյուսները կոտրելու։ Իրական software team-ները միշտ այսպես են կազմակերպում կոդը։
+
+**Ինչո՞ւ առանձին ֆայլեր:** Յուրաքանչյուր ֆայլ անում է ՄԵԿ բան: Սա հեշտացնում է կոդը գտնելը, սխալները (bugs) ուղղելը և մի մասի վրա աշխատելը՝ առանց մյուսները փչացնելու: Իրական ծրագրային թիմերը միշտ այսպես են կազմակերպում կոդը:
+
 ---
-## ⚙️ Setup — Հետևեք այս քայլերին ճշգրիտ
-Ընտրեք ձեր operating system-ը և հետևեք քայլերին՝
-### 🍎 macOS
+
+## ⚙️ Կարգավորում (Setup) — Հետևեք այս քայլերին ճշգրիտ
+Ընտրեք ձեր օպերացիոն համակարգը և հետևեք քայլերին.
+
+**🍎 macOS / 🐧 Linux**
 ```bash
 mkdir nn-visualizer-guided && cd nn-visualizer-guided
 git init
 mkdir -p data model viz outputs
 python3 -m venv venv
 source venv/bin/activate
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
-### 🪟 Windows
+
+**🪟 Windows**
 ```cmd
 mkdir nn-visualizer-guided
 cd nn-visualizer-guided
@@ -160,128 +185,110 @@ python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 ```
-### 🐧 Linux
-```bash
-mkdir nn-visualizer-guided && cd nn-visualizer-guided
-git init
-mkdir -p data model viz outputs
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-### Պատճենեք սա `requirements.txt`-ի մեջ՝
-```
+
+Պատճենեք սա **requirements.txt**-ի մեջ.
+```text
 numpy>=1.24
 pandas>=2.0
 plotly>=5.18
 scikit-learn>=1.3
 torch>=2.0
 ```
-### Պատճենեք սա `.gitignore`-ի մեջ՝
-```
+
+Պատճենեք սա **.gitignore**-ի մեջ.
+```text
 venv/
 __pycache__/
 *.pyc
 outputs/*.html
 .DS_Store
 ```
-### Կատարեք ձեր առաջին commit-ը՝
+
+Կատարեք ձեր առաջին քոմիթը.
 ```bash
 git add requirements.txt .gitignore
 git commit -m "Initial setup: add requirements and gitignore"
 ```
-✅ **Checkpoint՝** Այժմ դուք պետք է ունենաք Git repo մեկ commit-ով։ Ստուգելու համար գործարկեք `git log --oneline`։
+
+✅ **Checkpoint:** Դուք այժմ պետք է ունենաք Git ռեպո մեկ քոմիթով: Ստուգելու համար աշխատեցրեք `git log --oneline`:
+
 ---
+
 ## 📝 Առաջադրանքներ
----
-### Task 1 — Generate the Dataset (10 pts)
-**Ֆայլ՝** `data/generate.py`
-Մենք կօգտագործենք built-in dataset՝ **"moons"** — երկու կիսալուսնաձև շերտ, որոնք մասամբ համընկնում են։ Այն պարզ է, բայց ոչ չափազանց հեշտ բաժանելի, և դա դարձնում է այն հետաքրքիր neural network-ի համար։
 
-**Ավարտելուց հետո գործարկեք՝**
-- macOS/Linux՝ `python3 data/generate.py`
-- Windows՝ `python data\generate.py`
+### Առաջադրանք 1 — Գեներացնել տվյալների բազան (10 միավոր)
+Ֆայլ՝ `data/generate.py`: Մենք կօգտագործենք ներկառուցված տվյալների բազա, որը կոչվում է **"moons"** — երկու կիսալուսնաձև պատկերներ, որոնք համընկնում են:  
+**Աշխատեցրեք ավարտելիս.**
+* macOS/Linux: `python3 data/generate.py`
+* Windows: `python data\generate.py`
 
-**Starter code — լրացրեք `TODO` մասերը՝**
+Մեկնարկային կոդ — լրացրեք **TODO** մասերը.
 ```python
 """
-Տվյալների հավաքածուի ստեղծում
-============================
-Այս script-ը ստեղծում է 2D "moons" dataset binary classification-ի համար
-և այն պահում է որպես CSV ֆայլ։
-Ի՞նչ են "moons"-երը։ Երկու իրար մեջ խառնված crescent (կիսալուսնաձև) ձևեր։
-Neural network-ը պետք է սովորի կոր սահման՝ դրանք տարանջատելու համար։
+Dataset Generation
+==================
+Այս սկրիպտը ստեղծում է 2D "moons" տվյալների բազա binary classification-ի համար
+և պահպանում այն որպես CSV ֆայլ:
 """
 import numpy as np
 import pandas as pd
 from sklearn.datasets import make_moons
 from sklearn.preprocessing import StandardScaler
+
 def generate_dataset(n_samples=1000, noise=0.2, random_state=42):
     """
-    Ստեղծել 2D moons dataset։
-    Parameters
-    ----------
-    n_samples : int
-        Քանի տվյալային կետ ստեղծել (ընդհանուր քանակը՝ բաժանված երկու class-ի միջև)
-    noise : float
-        Որքան պատահական ցրում ավելացնել (0 = իդեալական crescents, 1 = շատ խառն)
-    random_state : int
-        Seed վերարտադրելիության համար — նույն թիվը = ամեն անգամ նույն dataset-ը
-    Returns
-    -------
-    pd.DataFrame
-        DataFrame հետևյալ սյունակներով՝ 'x1', 'x2', 'label'
+    Գեներացնել 2D moons տվյալների բազա:
     """
-    # Քայլ 1․ Ստեղծել moons-ը
-    # make_moons-ը վերադարձնում է երկու array՝ X (կոորդինատներ) և y (պիտակներ)
+    # Քայլ 1: Գեներացնել լուսինները
     X, y = make_moons(n_samples=n_samples, noise=noise, random_state=random_state)
-    # Քայլ 2․ Ստանդարտացնել features-ը
-    # StandardScaler-ը տվյալները կենտրոնացնում է 0-ի շուրջ՝ standard deviation 1-ով
-    # Սա օգնում է neural network-ին ավելի արագ սովորել
+
+    # Քայլ 2: Ստանդարտացնել հատկանիշները (Standardize features)
+    # StandardScaler-ը տվյալները կենտրոնացնում է 0-ի շուրջ՝ 1 ստանդարտ շեղմամբ
     scaler = StandardScaler()
     X = scaler.fit_transform(X)
-    # Քայլ 3․ Ստեղծել DataFrame
-    # TODO: Ստեղծեք pandas DataFrame 'x1', 'x2', 'label' սյունակներով
-    # Hint: X-ի shape-ը (1000, 2) է — column 0-ը x1-ն է, column 1-ը x2-ը
-    # Hint: pd.DataFrame({"column_name": array, ...})
-    df = ...  # YOUR CODE HERE
+
+    # Քայլ 3: Ստեղծել DataFrame
+    # TODO: Ստեղծել pandas DataFrame 'x1', 'x2', 'label' սյուներով
+    # Հուշում: X-ն ունի (1000, 2) ձև — սյուն 0-ն x1-ն է, սյուն 1-ը՝ x2-ը
+    df = ...  # ՁԵՐ ԿՈԴԸ ԱՅՍՏԵՂ
+
     return df
+
 if __name__ == "__main__":
-    # Այս բլոկը աշխատում է միայն այն ժամանակ, երբ դուք file-ը գործարկում եք ուղիղ։
-    # Այն ՉԻ աշխատում, երբ մեկ այլ file import է անում այս module-ը։
     df = generate_dataset()
     print(f"Dataset shape: {df.shape}")
     print(f"Class distribution:\n{df['label'].value_counts()}")
-    # TODO: Պահպանեք DataFrame-ը data/dataset.csv-ում
-    # Hint: df.to_csv("path/to/file.csv", index=False)
-    # index=False մասը նշանակում է՝ "չպահպանել տողերի համարները"
-    ...  # YOUR CODE HERE
+
+    # TODO: Պահպանել DataFrame-ը data/dataset.csv հասցեով
+    # Հուշում: df.to_csv("path/to/file.csv", index=False)
+    ...  # ՁԵՐ ԿՈԴԸ ԱՅՍՏԵՂ
     print("Dataset saved to data/dataset.csv")
 ```
-> **Ի՞նչ է `if __name__ == "__main__":`-ը։**  
-> Երբ Python-ը file-ը գործարկում է ուղիղ (օրինակ՝ `python3 data/generate.py`), այն հատուկ `__name__` variable-ին տալիս է `"__main__"` արժեքը։ Երբ մեկ այլ file այն *import* է անում (օրինակ՝ `from data.generate import generate_dataset`), `__name__`-ը դառնում է module-ի անունը։ Այս `if` բլոկը նշանակում է՝ «գործարկիր այս կոդը միայն այն ժամանակ, երբ file-ը գործարկվում է ուղիղ, ոչ թե import արվելիս»։
 
-**Սա ավարտելուց հետո commit արեք՝**
+**Ի՞նչ է `if __name__ == "__main__":`-ը:**
+Երբ Python-ը աշխատեցնում է ֆայլը ուղղակիորեն, այն սահմանում է հատուկ փոփոխական `__name__`-ը որպես `"__main__"`: Եթե մեկ այլ ֆայլ ներմուծում (import) է այն, `__name__`-ը դառնում է մոդուլի անունը: Այս բլոկը նշանակում է՝ «աշխատեցրու այս կոդը միայն այն ժամանակ, երբ ֆայլը կատարվում է ուղղակիորեն»:
+
+Ավարտելուց հետո կատարեք քոմիթ.
 ```bash
 git add data/generate.py
 git commit -m "feat: add dataset generation script"
 ```
+
 ---
-### Task 2 — Train the Neural Network (15 pts)
-**Ֆայլ՝** `model/train.py`
-Մենք PyTorch-ով կկառուցենք պարզ neural network։ Մի անհանգստացեք, եթե PyTorch-ը նոր է ձեզ համար — starter code-ը ունի մանրամասն comments, որոնք բացատրում են գրեթե ամեն տողը։
 
-**Ավարտելուց հետո գործարկեք՝**
-- macOS/Linux՝ `python3 model/train.py`
-- Windows՝ `python model\train.py`
+### Առաջադրանք 2 — Մարզել նեյրոնային ցանցը (15 միավոր)
+Ֆայլ՝ `model/train.py`: Մենք կկառուցենք պարզ նեյրոնային ցանց PyTorch-ով:
 
-**Starter code — լրացրեք `TODO` մասերը՝**
+**Աշխատեցրեք ավարտելիս.**
+* macOS/Linux: `python3 model/train.py`
+* Windows: `python model\train.py`
+
+Մեկնարկային կոդ — լրացրեք **TODO** մասերը.
 ```python
 """
-Neural Network-ի ուսուցում
+Neural Network Training
 ========================
-Այս script-ը սահմանում է պարզ neural network, սովորեցնում է այն moons dataset-ի վրա,
-և պահում է training history-ն ու model weights-ը։
+Այս սկրիպտը սահմանում է նեյրոնային ցանց, մարզում է այն և պահպանում կշիռները:
 """
 import json
 import numpy as np
@@ -289,562 +296,209 @@ import pandas as pd
 import torch
 import torch.nn as nn
 from sklearn.model_selection import train_test_split
-# ─── Քայլ 1: Սահմանել Neural Network-ը ───────────────────────
+
+# ─── Քայլ 1: Սահմանել նեյրոնային ցանցը ───────────────────────
 class MoonClassifier(nn.Module):
     """
-    Պարզ feedforward neural network binary classification-ի համար։
-    Architecture:
-        Input (2 feature)
-          → Hidden layer 1 (32 neuron) + ReLU activation
-          → Hidden layer 2 (16 neuron) + ReLU activation
-          → Output (1 neuron) + Sigmoid activation
-    Ի՞նչ է ReLU-ն։
-        ReLU(x) = max(0, x)։ Այն պահում է դրական արժեքները և բացասականները դարձնում 0։
-        Առանց activation function-ների network-ը կարող էր սովորել միայն ուղիղ գծեր։
-        ReLU-ն թույլ է տալիս սովորել կորեր։
-    Ի՞նչ է Sigmoid-ը։
-        Sigmoid(x) = 1 / (1 + e^(-x))։ Այն ցանկացած թիվ սեղմում է (0, 1) միջակայքում։
-        Սա հիանալի է binary classification-ի համար՝ 0-ին մոտ output = Class 0,
-        1-ին մոտ output = Class 1։
+    Պարզ feedforward նեյրոնային ցանց:
+    Ճարտարապետություն:
+        Input (2 features) -> Hidden 1 (32 neurons, ReLU) -> Hidden 2 (16 neurons, ReLU) -> Output (1 neuron, Sigmoid)
     """
     def __init__(self):
-        super().__init__()  # Initialize անել parent class-ը (պարտադիր է PyTorch-ում)
+        super().__init__()
         self.net = nn.Sequential(
-            # nn.Sequential-ը layer-ները շղթայում է իրար — տվյալները հոսում են հերթականությամբ
-            nn.Linear(2, 32),    # 2 input → 32 neuron (2, որովհետև ունենք x1, x2)
-            nn.ReLU(),           # Activation function
-            nn.Linear(32, 16),   # 32 → 16 neuron
-            nn.ReLU(),           # Activation function
-            nn.Linear(16, 1),    # 16 → 1 output neuron
-            nn.Sigmoid()         # Սեղմել output-ը probability-ի (0-ից 1)
+            nn.Linear(2, 32),
+            nn.ReLU(),
+            nn.Linear(32, 16),
+            nn.ReLU(),
+            nn.Linear(16, 1),
+            nn.Sigmoid()
         )
+
     def forward(self, x):
-        """Forward pass — սա կանչվում է, երբ անում եք model(input_data)։"""
+        """Ուղիղ տարածում (Forward pass)"""
         return self.net(x)
+
 # ─── Քայլ 2: Բեռնել տվյալները ────────────────────────────────────
 def load_data(path="data/dataset.csv"):
-    """Բեռնել dataset-ը և բաժանել train/validation set-երի։"""
     df = pd.read_csv(path)
-    # Առանձնացնել features-ը (x1, x2) labels-ից
-    X = df[["x1", "x2"]].values   # shape: (1000, 2)
-    y = df["label"].values          # shape: (1000,)
-    # Բաժանում՝ 80% training, 20% validation
-    # random_state-ը ապահովում է նույն բաժանումը ամեն անգամ
-    X_train, X_val, y_train, y_val = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
-    # Convert անել NumPy array-ները PyTorch tensor-ների
-    # PyTorch-ին պետք է FloatTensor features-ի համար և unsqueeze(1), որ labels-ը դառնան 2D
+    X = df[["x1", "x2"]].values
+    y = df["label"].values
+    
+    # Բաժանել: 80% մարզման, 20% վալիդացիայի համար
+    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Փոխակերպել PyTorch tensor-ների
     X_train_t = torch.FloatTensor(X_train)
-    y_train_t = torch.FloatTensor(y_train).unsqueeze(1)  # (800,) → (800, 1)
+    y_train_t = torch.FloatTensor(y_train).unsqueeze(1)
     X_val_t = torch.FloatTensor(X_val)
     y_val_t = torch.FloatTensor(y_val).unsqueeze(1)
     return X_train_t, y_train_t, X_val_t, y_val_t
-# ─── Քայլ 3: Training Loop ────────────────────────────────────
+
+# ─── Քայլ 3: Մարզման ցիկլ (Training Loop) ────────────────────────────────────
 def train_model(epochs=200, lr=0.01):
-    """
-    Սովորեցնել model-ը և վերադարձնել training history-ն։
-    Parameters
-    ----------
-    epochs : int
-        Քանի անգամ անցնել ամբողջ training տվյալներով
-    lr : float
-        Learning rate — որքան մեծ է յուրաքանչյուր շտկման քայլը։
-        Շատ մեծ = overshoot է անում, շատ փոքր = շատ երկար է տևում։
-    """
-    # Բեռնել տվյալները
     X_train, y_train, X_val, y_val = load_data()
-    # Ստեղծել model, loss function և optimizer
     model = MoonClassifier()
-    loss_fn = nn.BCELoss()  # Binary Cross-Entropy — ստանդարտ binary classification-ի համար
+    loss_fn = nn.BCELoss() # Binary Cross-Entropy
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-    # Adam-ը խելացի optimizer է — այն ինքնաբար կարգավորում է learning rate-ը յուրաքանչյուր parameter-ի համար
-    # Այս dictionary-ն կպահի մեր metric-ները, որ հետո plot անենք
-    history = {
-        "train_loss": [],
-        "val_loss": [],
-        "train_acc": [],
-        "val_acc": []
-    }
+
+    history = {"train_loss": [], "val_loss": [], "train_acc": [], "val_acc": []}
+
     for epoch in range(epochs):
-        # ── Training phase ──
-        model.train()  # Set անել model-ը training mode-ի
-        optimizer.zero_grad()  # Մաքրել նախորդ քայլին մնացած gradients-ը
-        train_preds = model(X_train)          # Forward pass
-        train_loss = loss_fn(train_preds, y_train)  # Հաշվել loss-ը
-        train_loss.backward()                  # Backward pass (հաշվել gradients-ը)
-        optimizer.step()                       # Թարմացնել weights-ը
-        # Հաշվել training accuracy-ն
-        # (preds > 0.5)-ը probabilities-ը դարձնում է 0/1 prediction-ների
+        model.train()
+        optimizer.zero_grad()
+        train_preds = model(X_train)
+        train_loss = loss_fn(train_preds, y_train)
+        train_loss.backward()
+        optimizer.step()
+
+        # Հաշվարկել ճշտությունը (accuracy)
         train_acc = ((train_preds > 0.5).float() == y_train).float().mean().item()
-        # ── Validation phase ──
-        model.eval()  # Set անել model-ը evaluation mode-ի (անջատում է dropout-ը և այլն)
-        with torch.no_grad():  # Չհաշվել gradients — մենք պարզապես գնահատում ենք
+
+        model.eval()
+        with torch.no_grad():
             val_preds = model(X_val)
             val_loss = loss_fn(val_preds, y_val)
             val_acc = ((val_preds > 0.5).float() == y_val).float().mean().item()
-        # TODO: Ավելացրեք բոլոր չորս metric-ները history dictionary-ի մեջ
-        # Hint: history["train_loss"].append(...)
-        # Hint: loss tensor-ների վրա օգտագործեք .item(), որ ստանաք սովորական Python թիվ
-        ...  # YOUR CODE HERE (4 lines)
-        # Յուրաքանչյուր 50 epoch-ը մեկ տպել progress-ը
+
+        # TODO: Ավելացնել բոլոր 4 մետրիկաները history բառարանի մեջ
+        # Հուշում: Use .item() on loss tensors
+        ... # ՁԵՐ ԿՈԴԸ ԱՅՍՏԵՂ (4 տող)
+
         if (epoch + 1) % 50 == 0:
-            print(f"Epoch {epoch+1}/{epochs} — "
-                  f"Loss: {train_loss.item():.4f} | "
-                  f"Val Acc: {val_acc:.2%}")
+            print(f"Epoch {epoch+1}/{epochs} — Loss: {train_loss.item():.4f} | Val Acc: {val_acc:.2%}")
+
     return model, history
-# ─── Քայլ 4: Պահպանել ամեն ինչ ──────────────────────────────────
+
 if __name__ == "__main__":
     model, history = train_model()
-    # Պահպանել training history-ն որպես JSON
     with open("model/history.json", "w") as f:
         json.dump(history, f)
-    print("Training history saved to model/history.json")
-    # TODO: Պահպանեք model weights-ը torch.save-ի միջոցով
-    # Hint: torch.save(model.state_dict(), "path/to/model.pth")
-    # state_dict()-ը պարունակում է բոլոր սովորած weights-ը և biases-ը
-    ...  # YOUR CODE HERE
+    
+    # TODO: Պահպանել մոդելի կշիռները torch.save-ի միջոցով
+    # Հուշում: torch.save(model.state_dict(), "path/to/model.pth")
+    ... # ՁԵՐ ԿՈԴԸ ԱՅՍՏԵՂ
     print("Model saved to model/model.pth")
 ```
-**Սա ավարտելուց հետո commit արեք՝**
+
+Ավարտելուց հետո կատարեք քոմիթ.
 ```bash
 git add model/train.py
 git commit -m "feat: add neural network training with validation tracking"
 ```
+
 ---
-### Task 3 — 2D Scatter Plot (10 pts)
-**Ֆայլ՝** `viz/scatter2d.py`
-Սկսեք պարզ 2D scatter plot-ից՝ ձեր dataset-ը տեսնելու համար։
 
-**Ավարտելուց հետո գործարկեք՝**
-- macOS/Linux՝ `python3 viz/scatter2d.py`
-- Windows՝ `python viz\scatter2d.py`
+### Առաջադրանք 3 — 2D Scatter Plot (10 միավոր)
+Ֆայլ՝ `viz/scatter2d.py`: Ստեղծեք պարզ 2D գրաֆիկ՝ ձեր տվյալները տեսնելու համար:
 
-**Starter code՝**
+**Աշխատեցրեք ավարտելիս.**
+* macOS/Linux: `python3 viz/scatter2d.py`
+* Windows: `python viz\scatter2d.py`
+
+Մեկնարկային կոդ.
 ```python
-"""
-2D Scatter Plot
-===============
-Visualize անել moons dataset-ը որպես interactive scatter plot։
-"""
 import pandas as pd
 import plotly.express as px
+
 def create_scatter(csv_path="data/dataset.csv"):
-    """Ստեղծել dataset-ի interactive scatter plot։"""
     df = pd.read_csv(csv_path)
-    # TODO: Ստեղծեք scatter plot՝ օգտագործելով px.scatter
-    # Պարտադիր arguments:
-    #   - data_frame=df
-    #   - x="x1"
-    #   - y="x2"
-    #   - color="label"             ← գունավորում է ըստ class-ի
-    #
-    # Optional, բայց լիարժեք միավորների համար ՊԱՐՏԱԴԻՐ՝
-    #   - color_continuous_scale=    ← փորձեք "RdBu", "Viridis" կամ "Plasma"
-    #   - title=                     ← տվեք նկարագրական վերնագիր
-    #   - labels={"x1": "...", "x2": "..."}   ← մարդկանց համար ընթեռնելի axis անուններ
-    #   - hover_data=                ← hover-ի ժամանակ ցույց տրվող սյունակների ցանկ
-    #   - template="plotly_dark"     ← dark theme (ավելի գեղեցիկ է թվում)
-    #
-    # Hint: fig = px.scatter(data_frame=df, x=..., y=..., color=..., ...)
-    fig = ...  # YOUR CODE HERE
-    # Export անել HTML
+    # TODO: Ստեղծել scatter plot օգտագործելով px.scatter
+    # Պարտադիր արգումենտներ: data_frame, x, y, color="label"
+    # Լրացուցիչ (լիարժեք միավորների համար): title, template="plotly_dark", labels
+    fig = ... # ՁԵՐ ԿՈԴԸ ԱՅՍՏԵՂ
+    
     fig.write_html("outputs/scatter2d.html")
-    print("Saved to outputs/scatter2d.html")
     return fig
+
 if __name__ == "__main__":
     fig = create_scatter()
-    fig.show()  # Բացում է browser-ում
-```
-> **Ի՞նչ է անում `fig.show()`-ը։** Այն plot-ը բացում է ձեր default web browser-ում։ Development-ի ընթացքում օգտագործեք սա, որպեսզի անմիջապես տեսնեք ձեր plot-ը։ `fig.write_html()`-ը այն պահպանում է որպես ֆայլ submission-ի համար։
-
-**Ավարտելուց հետո commit արեք՝**
-```bash
-git add viz/scatter2d.py
-git commit -m "feat: add 2D scatter plot visualization"
-```
----
-### Task 4 — Training Curves (15 pts)
-**Ֆայլ՝** `viz/training_curves.py`
-Plot արեք, թե ինչպես model-ը բարելավվել է training-ի ընթացքում։
-
-**Ավարտելուց հետո գործարկեք՝**
-- macOS/Linux՝ `python3 viz/training_curves.py`
-- Windows՝ `python viz\training_curves.py`
-
-**Starter code՝**
-```python
-"""
-Training Curves
-===============
-Visualize անել loss-ը և accuracy-ն training epoch-ների ընթացքում։
-Ի՞նչ է make_subplots-ը։
-    Այն ստեղծում է figure մի քանի chart-ով կողք կողքի (կամ մեկը մյուսի տակ)։
-    Պատկերացրեք այն որպես grid, որտեղ յուրաքանչյուր cell պահում է մեկ chart։
-"""
-import json
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-def create_training_curves(history_path="model/history.json"):
-    """Ստեղծել 2-panel training curves plot։"""
-    # Բեռնել training history-ն
-    with open(history_path) as f:
-        history = json.load(f)
-    epochs = list(range(1, len(history["train_loss"]) + 1))
-    # Ստեղծել figure՝ 1 տող, 2 սյունակով
-    # shared_xaxes=True նշանակում է, որ երկու panel-ները կիսում են նույն x-axis-ը (epochs)
-    fig = make_subplots(
-        rows=1, cols=2,
-        subplot_titles=("Loss Over Time", "Accuracy Over Time"),
-        shared_xaxes=True
-    )
-    # ── Ձախ panel: Loss ──
-    # TODO: Ավելացրեք երկու line trace՝ train_loss և val_loss-ի համար
-    # Օգտագործեք fig.add_trace(go.Scatter(...), row=1, col=1)
-    #
-    # go.Scatter-ի arguments, որոնք ձեզ պետք կգան՝
-    #   x=epochs             ← x արժեքները
-    #   y=history[...]       ← y արժեքները
-    #   name="Train Loss"    ← legend label
-    #   mode="lines"         ← գծել գծեր (ոչ միայն կետեր)
-    #   line=dict(color="...", width=2)   ← customize անել տեսքը
-    #
-    # Ավելացրեք ԵՐԿՈՒՍՆ էլ՝ train_loss և val_loss առանձին trace-ներով
-    ...  # YOUR CODE HERE (2 traces)
-    # ── Աջ panel: Accuracy ──
-    # TODO: Ավելացրեք երկու line trace՝ train_acc և val_acc-ի համար
-    # Նույն pattern-ը, բայց row=1, col=2
-    ...  # YOUR CODE HERE (2 traces)
-    # ── Styling ──
-    # TODO: Գտեք այն epoch-ը, որտեղ validation loss-ը ԱՄԵՆԱՑԱԾՐՆ է
-    # Hint: Օգտագործեք min() function-ը key-ի հետ, կամ np.argmin
-    # Հետո fig.add_vline-ով այդ epoch-ի վրա ավելացրեք vertical line
-    #
-    # fig.add_vline(
-    #     x=best_epoch,
-    #     line_dash="dash",
-    #     line_color="yellow",
-    #     annotation_text="Best epoch"
-    # )
-    best_epoch = ...  # YOUR CODE HERE
-    # Ավելացնել range slider — սա թույլ է տալիս zoom անել կոնկրետ epoch միջակայքերին
-    fig.update_xaxes(rangeslider_visible=True, row=1, col=1)
-    # Թարմացնել layout-ը
-    fig.update_layout(
-        template="plotly_dark",
-        title_text="Training Progress",
-        height=400
-    )
-    fig.write_html("outputs/training_curves.html")
-    print("Saved to outputs/training_curves.html")
-    return fig
-if __name__ == "__main__":
-    fig = create_training_curves()
     fig.show()
 ```
-**Ավարտելուց հետո commit արեք՝**
-```bash
-git add viz/training_curves.py
-git commit -m "feat: add training curves with range slider"
-```
+
 ---
-### Task 5 — 2D Decision Boundary (20 pts)
-**Ֆայլ՝** `viz/decision_boundary.py`
-Սա ամենահետաքրքիր 2D plot-ն է — այն ցույց է տալիս, թե **որտեղ է neural network-ը գծում սահմանը** երկու class-ների միջև։
 
-**Ինչպես է սա աշխատում՝**
-1. Ստեղծեք կետերի խիտ grid, որը ծածկում է ամբողջ plot-ի տարածքը
-2. Ամեն grid point անցկացրեք training արված model-ի միջով
-3. Գունավորեք յուրաքանչյուր կետը ըստ նրա predicted probability-ի
-4. Սա ստեղծում է հարթ color map, որը ցույց է տալիս decision region-ները
+### Առաջադրանք 4 — Մարզման կորեր (Training Curves) (15 միավոր)
+Ֆայլ՝ `viz/training_curves.py`: Գծագրեք, թե ինչպես է մոդելը լավացել մարզման ընթացքում:
 
-**Ավարտելուց հետո գործարկեք՝**
-- macOS/Linux՝ `python3 viz/decision_boundary.py`
-- Windows՝ `python viz\decision_boundary.py`
+**Աշխատեցրեք ավարտելիս.**
+* macOS/Linux: `python3 viz/training_curves.py`
+* Windows: `python viz\training_curves.py`
 
-**Starter code՝**
-```python
-"""
-Decision Boundary
-=================
-Visualize անել, թե ինչպես neural network-ը բաժանում է երկու class-ները։
-Ի՞նչ է meshgrid-ը։
-    Պատկերացրեք, որ graph paper-ի վրա grid եք նկարում։ np.meshgrid-ը ստեղծում է
-    յուրաքանչյուր հատման կետի x,y կոորդինատները։ Եթե ունեք 200 x-value և
-    200 y-value, ստանում եք 40,000 հատման կետ, որոնք ծածկում են ամբողջ տարածքը։
-"""
-import numpy as np
-import pandas as pd
-import torch
-import plotly.graph_objects as go
-# Մենք պետք է import անենք model class-ը, որպեսզի բեռնենք այն
-# Այս import-ը կաշխատի, եթե script-ը գործարկեք project root folder-ից
-import sys; sys.path.insert(0, ".")
-from model.train import MoonClassifier
-def create_decision_boundary(csv_path="data/dataset.csv", model_path="model/model.pth"):
-    """Visualize անել training արված model-ի decision boundary-ը։"""
-    # Բեռնել dataset-ը
-    df = pd.read_csv(csv_path)
-    # Բեռնել training արված model-ը
-    model = MoonClassifier()
-    model.load_state_dict(torch.load(model_path, weights_only=True))
-    model.eval()  # Set անել evaluation mode-ի
-    # ── Ստեղծել meshgrid ──
-    # Մենք ստեղծում ենք կետերի grid, որը ծածկում է տվյալների միջակայքը՝ մի փոքր padding-ով
-    padding = 0.5
-    x_min, x_max = df["x1"].min() - padding, df["x1"].max() + padding
-    y_min, y_max = df["x2"].min() - padding, df["x2"].max() + padding
-    # Յուրաքանչյուր ուղղությամբ 200 հավասարաչափ կետ = 40,000 grid point
-    xx, yy = np.meshgrid(
-        np.linspace(x_min, x_max, 200),
-        np.linspace(y_min, y_max, 200)
-    )
-    # Grid-ը հարթեցնել (flatten) որպես (x1, x2) զույգերի ցանկ
-    # np.c_-ն concatenate է անում columns-ը. shape-ը դառնում է (40000, 2)
-    grid_points = np.c_[xx.ravel(), yy.ravel()]
-    # Անցկացնել grid-ը model-ի միջով
-    with torch.no_grad():
-        grid_tensor = torch.FloatTensor(grid_points)
-        predictions = model(grid_tensor).numpy().reshape(xx.shape)
-        # predictions-ն այժմ ունի shape (200, 200) — probability յուրաքանչյուր grid point-ի համար
-    # ── Կառուցել plot-ը ──
-    fig = go.Figure()
-    # TODO: Ավելացրեք Contour trace decision boundary-ի համար
-    # Օգտագործեք go.Contour հետևյալով՝
-    #   x=np.linspace(x_min, x_max, 200)   ← x-axis values
-    #   y=np.linspace(y_min, y_max, 200)   ← y-axis values
-    #   z=predictions                        ← probability grid-ը
-    #   colorscale="RdBu"                    ← red/blue color scheme
-    #   opacity=0.7                          ← կիսաթափանցիկ
-    #   colorbar=dict(title="P(class=1)")    ← label color bar-ի համար
-    #   contours=dict(showlines=False)       ← թաքցնել contour line-ները՝ ավելի մաքուր տեսքի համար
-    fig.add_trace(...)  # YOUR CODE HERE
-    # TODO: Ավելացրեք իրական տվյալների կետերը վերևում որպես Scatter trace
-    # Օգտագործեք go.Scatter հետևյալով՝
-    #   x=df["x1"], y=df["x2"]
-    #   mode="markers"
-    #   marker=dict(
-    #       color=df["label"],
-    #       colorscale="RdBu",
-    #       size=5,
-    #       line=dict(width=0.5, color="white")   ← սպիտակ եզրագիծ յուրաքանչյուր կետի շուրջ
-    #   )
-    fig.add_trace(...)  # YOUR CODE HERE
-    # ── Layout ──
-    fig.update_layout(
-        template="plotly_dark",
-        title="Neural Network Decision Boundary",
-        xaxis_title="Feature x1",
-        yaxis_title="Feature x2",
-        width=700,
-        height=600
-    )
-    fig.write_html("outputs/decision_boundary.html")
-    print("Saved to outputs/decision_boundary.html")
-    return fig
-if __name__ == "__main__":
-    fig = create_decision_boundary()
-    fig.show()
-```
-**Ավարտելուց հետո commit արեք՝**
-```bash
-git add viz/decision_boundary.py
-git commit -m "feat: add decision boundary contour plot"
-```
+Մեկնարկային կոդի TODO-ներ.
+* Ավելացնել `go.Scatter` թրեյսեր (traces) Loss-ի և Accuracy-ի համար:
+* Գտնել ամենացածր `val_loss` ունեցող էպոխան և ավելացնել ուղղահայաց գիծ (`fig.add_vline`):
+
 ---
-### Task 6 — 3D Scatter Plot (15 pts)
-**Ֆայլ՝** `viz/scatter3d.py`
-Հիմա ուսումնասիրենք Plotly-ի 3D հնարավորությունները։ Այս visualization-ի համար մենք կստեղծենք **նոր 3D dataset**։
 
-**Ավարտելուց հետո գործարկեք՝**
-- macOS/Linux՝ `python3 viz/scatter3d.py`
-- Windows՝ `python viz\scatter3d.py`
+### Առաջադրանք 5 — 2D Decision Boundary (20 միավոր)
+Ֆայլ՝ `viz/decision_boundary.py`: Սա ցույց է տալիս, թե **որտեղ է նեյրոնային ցանցը գծում սահմանը** երկու դասերի միջև:
 
-**Starter code՝**
-```python
-"""
-3D Scatter Plot
-===============
-Ստեղծել 3D dataset և visualize անել այն որպես interactive 3D scatter plot։
-Ի՞նչ է Scatter3d-ը։
-    Այն սովորական scatter plot-ի նման է, բայց z-axis-ով։ Կարող եք սեղմել և քաշել՝
-    տեսքը պտտելու համար, scroll անել՝ zoom անելու համար, և hover անել՝ արժեքները տեսնելու համար։ Սա
-    Plotly-ի ամենատպավորիչ հնարավորություններից մեկն է։
-"""
-import numpy as np
-import plotly.graph_objects as go
-from sklearn.datasets import make_blobs
-def create_3d_scatter():
-    """Ստեղծել 3-class blob dataset-ի interactive 3D scatter plot։"""
-    # Ստեղծել 3D տվյալներ 3 cluster-ով
-    # make_blobs-ը ստեղծում է կետերի խմբեր (blobs) n-dimensional տարածության մեջ
-    X, y = make_blobs(
-        n_samples=600,       # 600 ընդհանուր կետ
-        centers=3,           # 3 առանձին խումբ
-        n_features=3,        # 3D (x, y, z)
-        random_state=42,
-        cluster_std=1.5      # Որքան ցրված է յուրաքանչյուր blob-ը
-    )
-    # Սահմանել մեկ գույն յուրաքանչյուր class-ի համար
-    colors = ["#FF6B6B", "#4ECDC4", "#45B7D1"]   # կարմիր, teal, կապույտ
-    symbols = ["circle", "diamond", "square"]
-    fig = go.Figure()
-    # TODO: Ավելացրեք մեկ Scatter3d trace ՅՈՒՐԱՔԱՆՉՅՈՒՐ CLASS-ի համար
-    # Անցեք loop-ով 0, 1, 2 class-ների միջով և ավելացրեք մեկ trace յուրաքանչյուրի համար
-    #
-    # for cls in [0, 1, 2]:
-    #     mask = (y == cls)   ← boolean array. True այնտեղ, որտեղ label-ը հավասար է cls-ին
-    #     fig.add_trace(go.Scatter3d(
-    #         x=X[mask, 0],
-    #         y=X[mask, 1],
-    #         z=X[mask, 2],
-    #         mode="markers",
-    #         name=f"Class {cls}",       ← legend label
-    #         marker=dict(
-    #             size=4,
-    #             color=colors[cls],
-    #             symbol=symbols[cls],
-    #             opacity=0.8
-    #         )
-    #     ))
-    ...  # YOUR CODE HERE
-    # TODO: Թարմացրեք layout-ը
-    # fig.update_layout(
-    #     template="plotly_dark",
-    #     title="3D Blob Dataset",
-    #     scene=dict(
-    #         xaxis_title="X",
-    #         yaxis_title="Y",
-    #         zaxis_title="Z"
-    #     ),
-    #     scene_camera=dict(eye=dict(x=1.5, y=1.5, z=0.8))   ← սկզբնական անկյուն
-    # )
-    ...  # YOUR CODE HERE
-    fig.write_html("outputs/scatter3d.html")
-    print("Saved to outputs/scatter3d.html")
-    return fig
-if __name__ == "__main__":
-    fig = create_3d_scatter()
-    fig.show()
-```
-> **Փորձեք սա․** Plot-ը browser-ում բացելուց հետո սեղմեք և քաշեք՝ այն պտտելու համար։ Scroll արեք՝ zoom անելու համար։ Double-click արեք՝ տեսքը reset անելու համար։ Սա է Plotly 3D-ի յուրահատկությունը — դուք ուսումնասիրում եք տվյալները, ոչ թե պարզապես նկար եք դիտում։
+**Աշխատեցրեք ավարտելիս.**
+* macOS/Linux: `python3 viz/decision_boundary.py`
+* Windows: `python viz\decision_boundary.py`
 
-**Ավարտելուց հետո commit արեք՝**
-```bash
-git add viz/scatter3d.py
-git commit -m "feat: add 3D scatter plot visualization"
-```
+TODO-ներ.
+* Ավելացնել `go.Contour` շերտը decision boundary-ի համար:
+* Ավելացնել `go.Scatter` շերտը իրական կետերի համար:
+
 ---
-### Task 7 — Գրեք `main.py`-ը (5 pts)
-**Ֆայլ՝** `main.py`
-Այս script-ը պետք է գործարկի ամեն ինչ ճիշտ հերթականությամբ։
 
-**Ավարտելուց հետո գործարկեք՝**
-- macOS/Linux՝ `python3 main.py`
-- Windows՝ `python main.py`
+### Առաջադրանք 6 — 3D Scatter Plot (15 միավոր)
+Ֆայլ՝ `viz/scatter3d.py`: Ուսումնասիրեք Plotly-ի 3D հնարավորությունները:
 
-**Starter code՝**
-```python
-"""
-Main Pipeline
-=============
-Գործարկում է ամբողջ նախագիծը՝ տվյալների ստեղծում → model-ի training → բոլոր plot-ների ստեղծում։
-Ինչո՞ւ ունենալ main.py։
-    Պատկերացրեք՝ ինչ‑որ մեկը ձեր նախագիծը ներբեռնում է GitHub-ից։ Նա չպետք է ստիպված լինի
-    հասկանալ, թե որ file-ը որ հերթականությամբ պետք է գործարկել։ main.py-ն անում է այդ ամենը
-    մեկ command-ով։
-"""
-import os
-# Ստեղծել outputs folder-ը, եթե այն դեռ գոյություն չունի
-os.makedirs("outputs", exist_ok=True)
-print("=" * 50)
-print("STEP 1: Generating dataset...")
-print("=" * 50)
-# TODO: Import արեք և կանչեք dataset generation function-ը
-# from data.generate import generate_dataset
-# ...
-print("\n" + "=" * 50)
-print("STEP 2: Training neural network...")
-print("=" * 50)
-# TODO: Import արեք և կանչեք training function-ը
-# from model.train import train_model
-# ...
-print("\n" + "=" * 50)
-print("STEP 3: Creating visualizations...")
-print("=" * 50)
-# TODO: Import արեք և կանչեք visualization function-ներից յուրաքանչյուրը
-# from viz.scatter2d import create_scatter
-# from viz.training_curves import create_training_curves
-# from viz.decision_boundary import create_decision_boundary
-# from viz.scatter3d import create_3d_scatter
-# ...
-print("\n" + "=" * 50)
-print("ALL DONE! Check the outputs/ folder for your HTML plots.")
-print("=" * 50)
-```
+**Աշխատեցրեք ավարտելիս.**
+* macOS/Linux: `python3 viz/scatter3d.py`
+* Windows: `python viz\scatter3d.py`
+
+TODO-ներ.
+* Ավելացնել մեկական `go.Scatter3d` թրեյս յուրաքանչյուր դասի (class) համար:
+
 ---
-### Task 8 — Գրեք ձեր README.md-ը (10 pts)
-Ձեր `README.md`-ը **առաջին բանն է, որ մարդիկ տեսնում են** ձեր GitHub էջում։ Այն պետք է ներառի՝
-1. **Նախագծի վերնագիր** և մեկ նախադասությամբ նկարագրություն
-2. **Setup instructions** — ինչպես տեղադրել և գործարկել նախագիծը։ Ներառեք command-ներ **բոլոր երեք operating system-ների** համար (macOS, Windows, Linux) — պատճենեք/հարմարեցրեք վերը տրված OS Reference բաժնից։
-3. **Ինչ է անում յուրաքանչյուր file-ը** — յուրաքանչյուր script-ի կարճ նկարագրություն
-4. **Screenshots** — առնվազն մեկ screenshot կամ GIF ձեր visualization-ներից։ Պատկեր ավելացնելու համար՝
-   - Բրաուզերում բացված plot-ի screenshot արեք
-   - Պահպանեք այն ձեր repo-ում (օրինակ՝ `screenshots/decision_boundary.png`)
-   - README-ում հղեք այսպես՝ `![Decision Boundary](screenshots/decision_boundary.png)`
-> **Ինչո՞ւ է README-ն կարևոր։** GitHub-ում README-ն ձեր նախագծի առաջին տպավորությունն է։ Recruiter-ները, դասախոսները և collaborators-ները այն կարդում են, որպեսզի հասկանան՝ արժե՞ արդյոք ուսումնասիրել ձեր նախագիծը։ Լավ README-ն ձեզ ավելի professional տեսք է տալիս։
+
+### Առաջադրանք 7 — Գրել main.py (5 միավոր)
+Ֆայլ՝ `main.py`: Այս սկրիպտը պետք է աշխատեցնի ամեն ինչ հերթականությամբ:
+
+TODO-ներ.
+* Import անել բոլոր ֆունկցիաները և կանչել դրանք:
+
 ---
-## 📊 Գնահատման չափանիշներ — ընդհանուր 100 միավոր
-### Visualizations (50 pts)
-| Task | Միավոր | Ինչ եմ փնտրում |
-|------|--------|----------------|
-| Task 1 — Dataset generation | 5 | Աշխատում է, ստեղծում է CSV, վերարտադրելի է |
-| Task 2 — Neural network | 10 | Սովորում է, պահպանում է history + model, տպում է progress |
-| Task 3 — 2D scatter | 5 | Interactive է, գունավորված, dark theme, custom labels |
-| Task 4 — Training curves | 10 | Երկու panel, range slider, նշված է best epoch-ը |
-| Task 5 — Decision boundary | 15 | Contour + scatter overlay, ընթեռնելի է, ունի color bar |
-| Task 6 — 3D scatter | 10 | 3 class, պտտվող, axis labels, camera set |
-| Task 7 — main.py | 5 | Գործարկում է ամբողջ pipeline-ը մեկ command-ով |
-| **Subtotal** | **50** | |
-### GitHub Practices (50 pts)
-| Criteria | Միավոր | Ինչ եմ փնտրում |
-|----------|--------|----------------|
-| Repository structure | 10 | Համընկնում է պահանջվող կառուցվածքին |
-| `requirements.txt` | 5 | Լրիվ և ճիշտ է |
-| `.gitignore` | 5 | venv, pycache, outputs բացառված են |
-| `README.md` | 10 | Վերնագիր, setup instructions (բոլոր 3 OS), screenshot, file description-ներ |
-| Commit history | 15 | **Առնվազն 6 commit** հստակ հաղորդագրություններով (ոչ թե մեկ մեծ commit) |
+
+### Առաջադրանք 8 — Գրել ձեր README.md-ն (10 միավոր)
+Ձեր **README.md**-ն առաջին բանն է, որ մարդիկ տեսնում են GitHub-ում: Այն պետք է ներառի.
+* Նախագծի վերնագիր և նկարագրություն
+* Կարգավորման հրամաններ (Setup instructions) բոլոր 3 ՕՀ-ների համար
+* Ֆայլերի նկարագրություն
+* Սքրինշոթներ (Screenshots) ձեր վիզուալիզացիաներից
+
+---
+
+## 📊 Գնահատման սանդղակ (Grading Rubric) — Ընդհանուր 100 միավոր
+
+### Վիզուալիզացիաներ (50 միավոր)
+| Առաջադրանք | Միավոր | Ինչին եմ ուշադրություն դարձնելու |
+| :--- | :--- | :--- |
+| Task 1 — Dataset generation | 5 | Աշխատում է, ստեղծում է CSV, reproducible է |
+| Task 2 — Neural network | 10 | Մարզվում է, պահպանում է history-ն, տպում է պրոգրեսը |
+| Task 3 — 2D scatter | 5 | Ինտերակտիվ է, գունավոր, dark theme |
+| Task 4 — Training curves | 10 | Երկու պանել, range slider, լավագույն էպոխան նշված է |
+| Task 5 — Decision boundary | 15 | Contour + scatter overlay, ընթեռնելի |
+| Task 6 — 3D scatter | 10 | 3 դասեր, պտտվող, առանցքների անուններ |
+| Task 7 — main.py | 5 | Աշխատեցնում է ամբողջ pipeline-ը մեկ հրամանով |
+
+### GitHub Պրակտիկա (50 միավոր)
+| Չափանիշ | Միավոր | Ինչին եմ ուշադրություն դարձնելու |
+| :--- | :--- | :--- |
+| Repository structure | 10 | Համապատասխանում է պահանջվող կառուցվածքին |
+| requirements.txt | 5 | Ամբողջական և ճիշտ է |
+| .gitignore | 5 | venv, pycache, outputs բացառված են |
+| README.md | 10 | Վերնագիր, setup հրամաններ, սքրինշոթ |
+| Commit history | 15 | Առնվազն 6 քոմիթ հստակ հաղորդագրություններով |
 | Code quality | 5 | Մաքուր կոդ, TODO-ները փոխարինված են իրական կոդով |
-| **Subtotal** | **50** | |
-### Ինչպիսի՞ commit message-ներ են լավը
-```
-feat: add dataset generation script        ← նոր feature ավելացնել
-feat: add neural network training
-feat: add 2D scatter plot
-fix: correct color scale on scatter plot    ← bug շտկել
-feat: add training curves with slider
-feat: add decision boundary visualization
-feat: add 3D scatter plot
-docs: write README with screenshots         ← documentation
-```
-**Վատ commit message-ներ՝** `update`, `stuff`, `asdfg`, `final`, `done`
+
 ---
-## ⚠️ Տարածված սխալներ, որոնցից պետք է խուսափել
-1. **Մոռանալ `model.eval()`-ը** prediction-ներ անելուց առաջ — սա կարող է սխալ արդյունքներ տալ
-2. **Script-ները սխալ folder-ից գործարկել** — միշտ նախ `cd` արեք project root-ի մեջ
-3. **Չակտիվացնել virtual environment-ը** — կստանաք "module not found" error-ներ
-4. **Commit անել venv folder-ը** — սա ձեր repo-ն ահռելի կդարձնի։ Ստուգեք `.gitignore`-ը։
-5. **Վերջնական կոդում թողնել `...` կամ `TODO`** — փոխարինեք starter code-ի ԲՈԼՈՐ placeholders-ը
-6. **Սխալ Python command օգտագործել** — հիշեք՝ `python3` macOS/Linux-ում, `python` Windows-ում
----
-## 💡 Հաջողության խորհուրդներ
-- **Ամեն file ավարտելուց հետո գործարկեք այն։** Մի սպասեք մինչև վերջ։ Ձեր plot-ները ստուգելու համար օգտագործեք `fig.show()`։
-- **Յուրաքանչյուր task-ից հետո commit արեք։** Սա բնականորեն կառուցում է ձեր commit history-ն։
-- **Կարդացեք error message-ները։** Սովորաբար դրանք հստակ ասում են, թե որ տողում է խնդիրը և ինչ է սխալ եղել։
-- **Google-ում փնտրեք error message-ը**, եթե stuck եք — հավանաբար ինչ‑որ մեկն արդեն ունեցել է նույն խնդիրը։
-- **Վաղ օգնություն խնդրեք։** Մի ծախսեք մեկ ժամ՝ մեկ տողի վրա խրված մնալով։
----
-*Դուք կարող եք սա անել։ Առաջ գնացեք մեկ task-ով մեկ, commit արեք ընթացքում, և կառուցեք մի բան, որով կհպարտանաք։* 🚀
+**Ինչպիսի՞ն է լավ Commit հաղորդագրությունը.**
+`feat: add dataset generation script` — նոր ֆունկցիոնալի ավելացում
 
 
 
